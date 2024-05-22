@@ -643,15 +643,15 @@ em {font-style: italic;}
 	font-size: var(--headerFontSize);
 	line-height: 3rem;
 	font-weight: 700;
-	margin: auto 10px; /* Adjust margin to add whitespaces around buttons */
+	margin: auto 10px; 
 	cursor: pointer;
 	background: white;
 	color: var(--primary);
-	padding: 0 1.5rem; /* Adjust padding to add spaces in buttons */
+	padding: 0 1.5rem; 
 	border-style: none;
 	border-radius: 0.25rem;
 	z-index: 1;
-	transition: color 0.3s; /* Add transition for text color */
+	transition: color 0.3s;
   }
   
   #software-buttons .tab-button:before {
@@ -690,7 +690,7 @@ em {font-style: italic;}
   }
   
   #software-content .tab-content {
-	width: 100%; /* Take full width of the container */
+	width: 100%; 
 	max-width: 80rem; 
 	box-sizing: border-box;
 	color: var(--bodyTextColor);
@@ -698,11 +698,11 @@ em {font-style: italic;}
 	padding: 50px;
 	border: 5px solid var(--secondaryLight);
 	border-radius: 0.5rem;
-	display: none; /* Initially hide all tabs */
+	display: none; 
   }
   
   #software-content .tab-content.active {
-	display: flex; /* Show active tab */
+	display: flex; 
 	flex-direction: row-reverse;
 	align-items: center;
 	justify-content: center;
@@ -1021,7 +1021,7 @@ em {font-style: italic;}
   }
   #reviews-1454 .cs-container {
     width: 100%;
-    max-width: 100%; /* Set to 100% */
+    max-width: 100%; 
     margin: auto;
     display: flex;
     flex-direction: column;
