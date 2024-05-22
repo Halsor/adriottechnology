@@ -521,7 +521,7 @@ em {font-style: italic;}
 
 /* Override styles for smaller screens */
 #technology-information {
-	padding: 2rem; 
+	padding: 1rem; 
 }
 
 
@@ -774,7 +774,6 @@ em {font-style: italic;}
 
 #cs-contact-240 {
     padding: var(--sectionPadding);
-	margin-bottom: clamp(10rem, 4vw, 11.5rem);
 }
 #cs-contact-240 .cs-container {
     width: 100%;
@@ -1017,12 +1016,12 @@ em {font-style: italic;}
 /*-- -------------------------- -->
 <---          Reviews           -->
 <--- -------------------------- -*/
-#reviews-1454 {
+  #reviews-1454 {
     padding: var(--sectionPadding);
   }
   #reviews-1454 .cs-container {
     width: 100%;
-    max-width: 80rem;
+    max-width: 100%; /* Set to 100% */
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -1045,7 +1044,7 @@ em {font-style: italic;}
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-wrap: wrap; /* Allow items to wrap onto next line */
     /* 16px - 20px */
     gap: clamp(1rem, 2.5vw, 1.25rem);
   }
@@ -1054,7 +1053,6 @@ em {font-style: italic;}
   #reviews-1454 .cs-item {
     list-style: none;
     width: 100%;
-    max-width: 39.375rem;
     /* 20px - 40px top & bottom */
     /* 20px - 40px left & right */
     padding: clamp(1.25rem, 3.15vw, 2.5rem) clamp(1.25rem, 3.15vw, 2.5rem);
@@ -1067,6 +1065,9 @@ em {font-style: italic;}
     align-items: flex-start;
     flex-direction: column;
     position: relative;
+	list-style: none;
+    width: 100%; /* Set to 100% to make them responsive */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
   }
 
   #reviews-1454 .cs-gov {
@@ -1075,7 +1076,6 @@ em {font-style: italic;}
     max-width: 39.375rem;
     /* 20px - 40px top & bottom */
     /* 20px - 40px left & right */
-    padding: clamp(1.25rem, 3.15vw, 2.5rem) clamp(1.25rem, 3.15vw, 2.5rem);
     border-radius: 1rem;
     /* prevents padding from adding to height and width */
     box-sizing: border-box;
@@ -1101,6 +1101,7 @@ em {font-style: italic;}
     /* 20px - 40px */
     margin-bottom: clamp(1.25rem, 3vw, 2.5rem);
     color: var(--bodyTextColor);
+	overflow-wrap: break-word;
   }
   #reviews-1454 .cs-flex-group {
     /* this margin top auto will push everything up and force the cs-flex-group to the bottom of the container. This is to account for review cards with different heights because of more or less text and makes the cards more responsive to changing text */
@@ -1149,18 +1150,26 @@ em {font-style: italic;}
     display: block;
   }
 
-  #reviews-1454 .cs-card-group {
-    display: flex; /* Ensure the container is a flexbox */
-    justify-content: center; /* Center the logos horizontally */
-	flex-direction: row;
-  }
-  #reviews-1454 .cs-gov {
-    margin: 10px; /* Add some margin for spacing between logos */
-  }
+  #reviews-1454 .cs-gov-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    /* 16px - 20px */
+    gap: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+#reviews-1454 .cs-gov {
+    margin: 0; 
+    flex-shrink: 0; 
+	width: clamp(80px, 8vw, 120px);
+	padding: 10px;
+}
 
   #reviews-1454 .cs-gov img {
-    max-width: 100%; /* Set the maximum width of the images to 100% of their container's width */
-    height: auto; /* Ensure the images maintain their aspect ratio */
+    width: 100%; 
+    height: auto; 
   }
 
 
