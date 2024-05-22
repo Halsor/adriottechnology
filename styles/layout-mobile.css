@@ -1,0 +1,1358 @@
+:root {
+    /* Add these styles to your global stylesheet, which is used across all site pages. You only need to do this once. All elements in the library derive their variables and base styles from this central sheet, simplifying site-wide edits. For instance, if you want to modify how your h2's appear across the site, you just update it once in the global styles, and the changes apply everywhere. */
+    --primary: #284B63;
+    --primaryLight: #284B63;
+    --secondary: #3C6E71;
+    --secondaryLight: #E3EDEE;
+    --headerColor: #3C6E71;
+    --bodyTextColor: #353535;
+    --bodyTextColorWhite: #fafbfc;
+    /* 13px - 16px */
+    --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
+    --headerFontSize: 20px;
+    --bodyFontSize: clamp(18px, 40%, 18px);
+    /* 60px - 100px top and bottom */
+    --sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Psuedo elements that apply to the entire HTML page */
+*, *:before, *:after {
+    /* prevents padding from affecting height and width */
+    box-sizing: border-box;
+	font-family: "Ubuntu Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+
+h3, h2, h1 {
+  color: var(--headerColor);
+}
+
+p {
+  color: var(--bodyTextColor);
+  line-height: 1.5em;
+}
+
+/* Redefining some semantic tags as browser not displaying them correctly */
+em {font-style: italic;}
+
+
+
+/*-- -------------------------- -->
+<---     Mobile Navigation      -->
+<--- -------------------------- -*/
+	body.cs-open {
+	  overflow: hidden;
+	}
+	#cs-navigation {
+	  width: 100%;
+	  /* prevents padding and border from affecting height and width */
+	  box-sizing: border-box;
+	  padding: 0.75rem 1rem;
+	  background-color: #fff;
+	  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	  position: fixed;
+	  z-index: 10000;
+	}
+	#cs-navigation:before {
+	  /* black blurred overlay */
+	  content: "";
+	  width: 0%;
+	  height: 100vh;
+	  background: rgba(227, 237, 238, 0.6);
+	  opacity: 0;
+	  display: block;
+	  position: absolute;
+	  top: 100%;
+	  right: 0;
+	  z-index: -11;
+	  transition: width 0.5s, opacity 0.3s;
+	  -webkit-backdrop-filter: blur(10px);
+	  backdrop-filter: blur(10px);
+	}
+	#cs-navigation.cs-active:before {
+	  width: 100%;
+	  opacity: 1;
+	}
+	#cs-navigation.cs-active .cs-ul-wrapper {
+	  opacity: 1;
+	  transform: scaleX(1);
+	  transition-delay: 0.2s;
+	}
+	#cs-navigation.cs-active .cs-li {
+	  opacity: 1;
+	  transform: translateX(0);
+	}
+	#cs-navigation .cs-container {
+	  width: 100%;
+	  display: flex;
+	  justify-content: flex-end;
+	  align-items: center;
+	}
+	#cs-navigation .cs-logo {
+	  width: 40%;
+	  max-width: 9.125rem;
+	  height: 100%;
+	  margin: 0 auto 0 0;
+	  /* prevents padding and border from affecting height and width */
+	  box-sizing: border-box;
+	  padding: 0;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  z-index: 10;
+	}
+	#cs-navigation .cs-logo img {
+	  width: 100%;
+	  height: 100%;
+	  /* ensures the image never overflows the container. It stays contained within it's width and height and expands to fill it then stops once it reaches an edge */
+	  object-fit: contain;
+	  /* places the image to the left edge of the parent */
+	  object-position: left;
+	}
+	#cs-navigation .cs-toggle {
+	  /* 44px - 48px */
+	  width: clamp(2.75rem, 6vw, 3rem);
+	  height: clamp(2.75rem, 6vw, 3rem);
+	  margin: 0 0 0 auto;
+	  background-color: transparent;
+	  border: none;
+	  border-radius: 0.25rem;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	}
+	#cs-navigation .cs-active .cs-line1 {
+	  top: 50%;
+	  transform: translate(-50%, -50%) rotate(225deg);
+	}
+	#cs-navigation .cs-active .cs-line2 {
+	  top: 50%;
+	  transform: translate(-50%, -50%) translateY(0) rotate(-225deg);
+	  transform-origin: center;
+	}
+	#cs-navigation .cs-active .cs-line3 {
+	  opacity: 0;
+	  bottom: 100%;
+	}
+	#cs-navigation .cs-box {
+	  /* 24px - 28px */
+	  width: clamp(1.5rem, 2vw, 1.75rem);
+	  /* 14px - 16px */
+	  height: clamp(0.875rem, 1.5vw, 1rem);
+	  position: relative;
+	}
+	#cs-navigation .cs-line {
+	  width: 100%;
+	  height: 2px;
+	  background-color: var(--primary);
+	  border-radius: 2px;
+	  position: absolute;
+	  left: 50%;
+	  transform: translateX(-50%);
+	}
+	#cs-navigation .cs-line1 {
+	  top: 0;
+	  transition: transform 0.5s, top 0.3s, left 0.3s;
+	  animation-duration: 0.7s;
+	  animation-timing-function: ease;
+	  animation-direction: normal;
+	  animation-fill-mode: forwards;
+	  transform-origin: center;
+	}
+	#cs-navigation .cs-line2 {
+	  top: 50%;
+	  transform: translateX(-50%) translateY(-50%);
+	  transition: top 0.3s, left 0.3s, transform 0.5s;
+	  animation-duration: 0.7s;
+	  animation-timing-function: ease;
+	  animation-direction: normal;
+	  animation-fill-mode: forwards;
+	}
+	#cs-navigation .cs-line3 {
+	  bottom: 0;
+	  transition: bottom 0.3s, opacity 0.3s;
+	}
+	#cs-navigation .cs-ul-wrapper {
+	  height: 100vh;
+	  background-color: #fff;
+	  box-shadow: inset rgba(0, 0, 0, 0.2) 0px 8px 24px;
+	  opacity: 0;
+	  position: absolute;
+	  top: 100%;
+	  right: 0;
+	  left: auto;
+	  z-index: -1;
+	  overflow: hidden;
+	  transform: scaleX(0);
+	  transition: transform 0.4s, opacity 0.3s;
+	  transform-origin: top right;
+	}
+	#cs-navigation .cs-ul {
+	  width: auto;
+	  min-width: 40%;
+	  height: 65vh;
+	  margin: 0;
+	  /* 28px - 40px */
+	  padding: 3rem clamp(1.75rem, 3vw, 2.5rem) 2rem 4.375rem;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: flex-start;
+	  align-items: flex-end;
+	  gap: 1.25rem;
+	  overflow: scroll;
+	}
+	#cs-navigation .cs-li {
+	  text-align: right;
+	  list-style: none;
+	  width: 100%;
+	  margin-right: 0;
+	  opacity: 0;
+	  /* transition from these values */
+	  transform: translateX(-2.5rem);
+	  transition: transform 0.6s, opacity 0.9s;
+	}
+	#cs-navigation .cs-li:nth-of-type(1) {
+	  transition-delay: 0.05s;
+	}
+	#cs-navigation .cs-li:nth-of-type(2) {
+	  transition-delay: 0.1s;
+	}
+	#cs-navigation .cs-li:nth-of-type(3) {
+	  transition-delay: 0.15s;
+	}
+	#cs-navigation .cs-li:nth-of-type(4) {
+	  transition-delay: 0.2s;
+	}
+	#cs-navigation .cs-li:nth-of-type(5) {
+	  transition-delay: 0.25s;
+	}
+	#cs-navigation .cs-li:nth-of-type(6) {
+	  transition-delay: 0.3s;
+	}
+	#cs-navigation .cs-li:nth-of-type(7) {
+	  transition-delay: 0.35s;
+	}
+	#cs-navigation .cs-li:nth-of-type(8) {
+	  transition-delay: 0.4s;
+	}
+	#cs-navigation .cs-li:nth-of-type(9) {
+	  transition-delay: 0.45s;
+	}
+	#cs-navigation .cs-li-link {
+	  /* 16px - 24px */
+	  font-size: clamp(1rem, 2.5vw, 1.5rem);
+	  line-height: 1.2em;
+	  text-decoration: none;
+	  margin: 0;
+	  color: var(--headerColor);
+	  display: inline-block;
+	  position: relative;
+	}
+	#cs-navigation .cs-li-link:before {
+	  /* active state underline */
+	  content: "";
+	  width: 100%;
+	  height: 1px;
+	  background: currentColor;
+	  opacity: 1;
+	  display: none;
+	  position: absolute;
+	  bottom: -0.125rem;
+	  left: 0;
+	}
+	#cs-navigation .cs-li-link.cs-active:before {
+	  display: block;
+	}
+	#cs-navigation .cs-button-solid {
+	  display: none;
+	}
+
+/*-- -------------------------- -->
+<---     Navigation Dropdown    -->
+<--- -------------------------- -*/
+  #cs-navigation .cs-dropdown {
+    color: var(--bodyTextColorWhite);
+    position: relative;
+  }
+  #cs-navigation .cs-dropdown.cs-active .cs-drop-ul {
+    height: auto;
+    margin: 0.75rem 0 0 auto;
+    padding: 1.5rem;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+  #cs-navigation .cs-dropdown.cs-active .cs-drop-link {
+    opacity: 1;
+  }
+  #cs-navigation .cs-dropdown .cs-li-link {
+    position: relative;
+    transition: opacity 0.3s;
+  }
+  #cs-navigation .cs-drop-icon {
+    width: 0.9375rem;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    right: -1.25rem;
+    transform: translateY(-50%);
+  }
+  #cs-navigation .cs-drop-ul {
+    width: 100%;
+    max-width: 15.625rem;
+    height: 0;
+    margin: 0 0 0 auto;
+    box-sizing: border-box;
+    padding: 0 1.5rem 0 1.5rem;
+    background-color: var(--primary);
+    opacity: 0;
+    border-radius: 1rem;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 0.75rem;
+    overflow: hidden;
+    transform: scale(0);
+    transition: padding 0.3s, margin 0.3s, height 0.3s, opacity 0.3s, transform 0.3s, visibility 0.3s;
+    transform-origin: top right;
+  }
+  #cs-navigation .cs-drop-li {
+    text-align: inherit;
+    list-style: none;
+  }
+  #cs-navigation .cs-li-link.cs-drop-link {
+    /* 14px - 16px */
+    font-size: clamp(0.875rem, 2vw, 1.25rem);
+    color: #fff;
+  }
+
+/*-- -------------------------- -->
+<---           Hero             -->
+<--- -------------------------- -*/
+
+	#hero-82 {
+		/* Centers button */
+		text-align: center;
+		/* 144px - 300px - leaving extra space for the navigation */
+		padding: clamp(9rem, 25.95vw, 18.75rem) 1rem 0;
+		/* 130px - 200px */
+		padding-bottom: clamp(8.125rem, 12.5vw, 25em);
+		position: relative;
+		
+		z-index: 1;
+	}
+	#hero-82 .cs-background {
+		width: 100%;
+		height: 100%;
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		/* This will implement a gradient on the image, fading to white */
+		-webkit-mask-image: linear-gradient(black, transparent);
+		mask-image: linear-gradient(black, transparent);
+		z-index: -2;
+	}
+	#hero-82 .cs-background:before {
+		/* Overlay */
+		content: "";
+		width: 100%;
+		height: 100%;
+		background: var(--secondaryLight);
+		opacity: 0.7;
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		/* prevents the cursor from interacting with it */
+		pointer-events: none;
+	}
+	#hero-82 .cs-background img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+	#hero-82 .cs-container {
+		width: 100%;
+		max-width: 67.5rem;
+		/* This will increase the size of the box around the main information, bolding it while still keeping accurate image info */
+		padding: 50px;
+		box-sizing: border-box;
+		margin: auto;
+	}
+	#hero-82 .cs-title {
+		/* 39px - 61px */
+		font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
+		font-weight: 1000;
+		line-height: 1.2em;
+		text-align: center;
+		max-width: 51.8125rem;
+		/* 16px - 24px */
+		margin: 0 auto clamp(1rem, 4vw, 1.5rem);
+		color: var(--headerColor);
+		position: relative;
+	}
+	#hero-82 .cs-title:after {
+		/* Divider Line */
+		content: "";
+		width: 6.25rem;
+		height: 0.5rem;
+		/* 16px - 24px */
+		margin: clamp(1rem, 4vw, 1.5rem) auto clamp(1rem, 4vw, 1.5rem);
+		background: var(--secondary);
+		opacity: 1;
+		position: relative;
+		display: block;
+	}
+	#hero-82 .cs-text {
+		/* 16px - 25px */
+		font-size: clamp(1rem, 1.95vw, 1.5625rem);
+		line-height: 1.5em;
+		font-weight: 450;
+		text-align: center;
+		width: 100%;
+		/* 464px - 800px */
+		max-width: clamp(29rem, 60vw, 50rem);
+		margin: 0 auto;
+		/* 40px - 48px */
+		margin-bottom: clamp(2.5rem, 4vw, 3rem);
+		color: var(--bodyTextColor);
+	}
+	#hero-82 .cs-button-solid {
+		font-size: 1rem;
+		line-height: 3.5rem;
+		text-decoration: none;
+		font-weight: 700;
+		margin: auto;
+		color: #fff;
+		padding: 0 1.5rem;
+		background-color: var(--primary);
+		border-radius: 0.25rem;
+		display: inline-block;
+		position: relative;
+		z-index: 1;
+	}
+	#hero-82 .cs-button-solid:before {
+		content: "";
+		position: absolute;
+		display: block;
+		height: 100%;
+		width: 0%;
+		background: var(--bodyTextColor);
+		opacity: 1;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		border-radius: 0.25rem;
+		transition: width 0.3s;
+	}
+	#hero-82 .cs-button-solid:hover:before {
+		width: 100%;
+	}
+
+
+/*-- -------------------------- -->
+<---       Experience           -->
+<--- -------------------------- -*/
+#experience-information {
+	width: 100%;
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 100px;
+  }
+  
+  
+  #experience-information h2 {
+	font-size: 40px;
+	margin-bottom: 0px;
+  }
+  
+  #experience-information p {
+	font-size: 16px;
+	margin-top: 4px;
+  }
+
+/* Override styles for smaller screens */
+#experience-information {
+	padding: 2rem; 
+}
+
+#experience-information h2 {
+	font-size: 2rem; 
+}
+
+#experience-information p {
+	font-size: 1rem; 
+}
+
+/*-- -------------------------- -->
+<---       Technology           -->
+<--- -------------------------- -*/
+#technology-information {
+	width: 100%;
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 100px;
+  }
+  
+  #technology-information h3 {
+	font-size: 24px;
+	margin-bottom: 0px;
+  }
+  
+  #technology-information p {
+	font-size: 16px;
+	margin-top: 4px;
+  }
+
+/* Override styles for smaller screens */
+#technology-information {
+	padding: 2rem; 
+}
+
+
+#technology-information h3 {
+	font-size: 1.5rem; 
+	margin-top: 0px;
+}
+
+#technology-information p {
+	font-size: 1rem; 
+}
+
+/*-- -------------------------- -->
+<---     Matrix Organisation    -->
+<--- -------------------------- -*/
+#experience-matrix {
+	margin-top: 100px;
+	padding: 1rem; 
+  }
+  
+  #experience-matrix .slide {
+	display: none;
+  }
+  
+  #experience-matrix .slide.active-slide {
+	display: block;
+  }
+  
+  #experience-matrix img {
+	vertical-align: middle;
+	object-fit: cover;
+	/* Adding width 100% here to ensure that mobile screens are not ruined */
+	width: 100%;
+	height: 400px;
+	border-radius: 10px;
+  }
+  
+
+  #experience-matrix .matrix-container {
+	max-width: 1000px;
+	position: relative;
+	margin: auto;
+  }
+  
+
+  #experience-matrix .prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	padding: 16px;
+	margin-top: -35px;
+	/* Adjusted margin for mobile */
+	margin-right: 10px;
+	margin-left: 10px;
+	color: var(--secondary);
+	background-color: rgba(227, 237, 238, 0.5);
+	font-weight: 700px;
+	font-size: 24px;
+	transition: 0.6s ease;
+	border: none;
+	border-radius: 10px;
+	user-select: none;
+  }
+  
+  #experience-matrix .next {
+	right: 0;
+  }
+  
+  
+  #experience-matrix .dot-container {
+	text-align: center;
+	
+  }
+  
+
+  #experience-matrix .dot {
+	cursor: pointer;
+	height: 50px;
+	width: 50px;
+	margin: 0 2px;
+	margin-top: 20px;
+	background-color: var(--secondaryLight);
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.4s ease;
+	position: relative;
+  }
+  
+  #experience-matrix .dot::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 30px; 
+	height: 30px; 
+	background-color: transparent; 
+	border-radius: 50%;
+	transition: background-color 0.4s ease;
+  }
+
+#experience-matrix .active::after, .dot:hover::after {
+  background-color: var(--secondary); 
+}
+
+  
+/*-- -------------------------- -->
+<---       Tabbed Content       -->
+<--- -------------------------- -*/
+#software-buttons {
+	margin-top: 100px;
+	display: flex; 
+	justify-content: center; 
+	align-items: center; 
+  }
+  
+  #software-buttons .tab-button {
+	position: relative;
+	font-size: var(--headerFontSize);
+	line-height: 3rem;
+	font-weight: 700;
+	margin: auto 10px; /* Adjust margin to add whitespaces around buttons */
+	cursor: pointer;
+	background: white;
+	color: var(--primary);
+	padding: 0 1.5rem; /* Adjust padding to add spaces in buttons */
+	border-style: none;
+	border-radius: 0.25rem;
+	z-index: 1;
+	transition: color 0.3s; /* Add transition for text color */
+  }
+  
+  #software-buttons .tab-button:before {
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: var(--primary);
+	opacity: 0;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	border-radius: 0.25rem;
+	transition: opacity 0.3s;
+  }
+  
+  #software-buttons .tab-button:hover:before {
+	opacity: 1;
+  }
+  
+  #software-buttons .tab-button.selected {
+	background-color: var(--primary);
+	color: white;
+  }
+  
+  /* Changing text colour on hover */
+  #software-buttons .tab-button:hover {
+	color: white;
+  }
+  
+  #software-content {
+	margin-bottom: 100px;
+	display: flex; 
+	justify-content: center; 
+	align-items: center; 
+  }
+  
+  #software-content .tab-content {
+	width: 100%; /* Take full width of the container */
+	max-width: 80rem; 
+	box-sizing: border-box;
+	color: var(--bodyTextColor);
+	background-color: var(--secondaryLight);
+	padding: 50px;
+	border: 5px solid var(--secondaryLight);
+	border-radius: 0.5rem;
+	display: none; /* Initially hide all tabs */
+  }
+  
+  #software-content .tab-content.active {
+	display: flex; /* Show active tab */
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  /* Sets text to only take up left half of the info box */
+  #software-content figcaption { 
+	margin-right: 60px; 
+	width: 100%;
+  }
+  
+  #software-content h3 {
+	margin-bottom: 0px;
+	font-size: 25px;
+  }
+  
+  /* Sets image to only take up right half of the info box */
+  #software-content .tab-content img {
+	margin: 10px 0; 
+	border-radius: 0.5rem;
+  }
+  
+  /* Override for mobile devices */
+	#software-buttons {
+	  flex-direction: column;
+	  margin-bottom: 10px;
+	}
+  
+	#software-buttons .tab-button {
+	  margin: 5px 0;
+	  font-size: 1.125rem;
+	  line-height: 2rem;
+	  padding: 0.5rem 1rem;
+	}
+  
+	#software-content {
+	  margin-bottom: 20px;
+	}
+  
+	#software-content .tab-content {
+	  flex-direction: column;
+	  padding: 20px;
+	}
+  
+	#software-content .tab-content.active {
+	  flex-direction: column;
+	  align-items: flex-start;
+	}
+  
+	#software-content figcaption {
+	  margin: 0;
+	  width: 100%;
+	  text-align: left;
+	}
+  
+	#software-content h3 {
+	  font-size: 1.5rem;
+	}
+  
+	#software-content .tab-content img {
+	  width: 100%;
+	  height: auto;
+	  margin: 20px 0 0 0;
+	}
+
+/*-- -------------------------- -->
+<---          Contact           -->
+<--- -------------------------- -*/
+
+#cs-contact-240 {
+    padding: var(--sectionPadding);
+	margin-bottom: clamp(10rem, 4vw, 11.5rem);
+}
+#cs-contact-240 .cs-container {
+    width: 100%;
+    /* changes to 1280px at desktop */
+    max-width: 50rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 48px - 64px */
+    gap: clamp(3rem, 6vw, 4rem);
+}
+#cs-contact-240 .cs-content {
+    /* set text align to left if content needs to be left aligned */
+    text-align: left;
+    width: 100%;
+    margin: 0 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    /* centers content horizontally, set to flex-start to left align */
+    align-items: flex-start;
+}
+
+#cs-contact-240 .cs-title {
+    font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
+    font-weight: 900;
+    line-height: 1.2em;
+    text-align: inherit;
+    max-width: 43.75rem;
+    margin: 0 0 1rem 0;
+    color: var(--headerColor);
+    position: relative;
+}
+#cs-contact-240 .cs-text {
+    font-size: var(--bodyFontSize);
+    line-height: 1.5em;
+    text-align: inherit;
+    width: 100%;
+    max-width: 40.625rem;
+    margin: 0;
+    color: var(--bodyTextColor);
+}
+#cs-contact-240 #cs-form-240-240 {
+    width: 100%;
+}
+#cs-contact-240 .cs-label {
+    font-size: 1rem;
+    line-height: 1.5em;
+    font-weight: 700;
+    /* 12px - 20px */
+    margin-bottom: clamp(0.75rem, 1.3em, 1.25rem);
+    color: var(--headerColor);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+#cs-contact-240 .cs-label-message {
+    /* 32px - 48px */
+    margin-bottom: clamp(2rem, 5.3vw, 3rem);
+}
+#cs-contact-240 .cs-input,
+#cs-contact-240 .cs-textarea {
+    font-size: 1rem;
+    width: 100%;
+    height: 4rem;
+    margin-top: 0.25rem;
+    padding-left: 1.25rem;
+    border: 1px solid #b4b2c7;
+    border-radius: 0.5rem;
+    /* prevents border & padding from affecting height */
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+#cs-contact-240 .cs-input:hover,
+#cs-contact-240 .cs-textarea:hover {
+    border: 1px solid var(--primary);
+}
+#cs-contact-240 .cs-textarea {
+    font-family: inherit;
+    margin: 0;
+    padding-top: 1.25rem;
+    min-height: 7.5rem;
+}
+#cs-contact-240 .cs-button-solid {
+    font-size: 1rem;
+    /* 46px - 56px */
+    line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+    text-decoration: none;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    color: #fff;
+    min-width: 9.375rem;
+    padding: 0 1.5rem;
+    background-color: var(--primary);
+    border-radius: 0.25rem;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    /* prevents padding from adding to the width */
+    box-sizing: border-box;
+}
+#cs-contact-240 .cs-button-solid:before {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--bodyTextColor);
+  opacity: 1;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 0.25rem;
+  transition: width 0.3s;
+}
+#cs-contact-240 .cs-button-solid:hover:before {
+    width: 100%;
+}
+#cs-contact-240 .cs-submit {
+    width: 100%;
+    border: none;
+    border-radius: 0.25rem;
+}
+#cs-contact-240 .cs-right-section {
+    position: relative;
+    width: 100%;
+    /* 24px - 40px top & bottom */
+    /* 20px - 40px left & right */
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem);
+    /* prevents padding and border from affecting height and width */
+    box-sizing: border-box;
+    border-radius: 1.25rem;
+    background-color: var(--secondaryLight);
+    /* cuts off corners on img tag */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    /* 28px - 40px */
+    gap: clamp(1.75rem, 4vw, 2.5rem);
+}
+#cs-contact-240 .cs-ul {
+    padding: 0;
+    margin: 0;
+}
+#cs-contact-240 .cs-li {
+    list-style: none;
+    /* 16px - 20px */
+    margin-bottom: clamp(1rem, 2vw, 1.25rem);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#cs-contact-240 .cs-li:hover .cs-icon-wrapper {
+    transform: scale(1.2);
+}
+#cs-contact-240 .cs-li:last-of-type {
+    margin-bottom: 0;
+}
+#cs-contact-240 .cs-header {
+    /* 16px - 20px */
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 700;
+    line-height: 1.2em;
+    margin-bottom: 0.5rem;
+    color: var(--headerColor);
+    display: block;
+}
+#cs-contact-240 .cs-link {
+    /* 16px - 20px */
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.2em;
+    text-decoration: none;
+    color: var(--bodyTextColor);
+    position: relative;
+}
+#cs-contact-240 .cs-link:hover:before {
+    width: 100%;
+}
+#cs-contact-240 .cs-link:before {
+    /* top right box */
+    content: "";
+    width: 0%;
+    height: 2px;
+    /* current color of parent */
+    background: currentColor;
+    opacity: 1;
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s;
+}
+#cs-contact-240 .cs-icon-wrapper {
+    width: 4rem;
+    height: 4rem;
+    /* 16px - 20px */
+    margin-right: clamp(1rem, 2vw, 1.25rem);
+    background-color: #fff;
+    box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* prevents flexbox from squishing it */
+    flex: none;
+    transition: transform 0.3s;
+}
+#cs-contact-240 .cs-icon {
+    /* 32px -36px */
+    width: clamp(2rem, 3vw, 2.25rem);
+    height: auto;
+    display: block;
+}
+#cs-contact-240 .cs-map {
+    width: 100%;
+    border-radius: 0.5rem;
+    /* clips image corners */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    /* width divided height */
+    aspect-ratio: 1.44;
+}
+#cs-contact-240 #map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 462px;
+    height: 438px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/*-- -------------------------- -->
+<---          Reviews           -->
+<--- -------------------------- -*/
+#reviews-1454 {
+    padding: var(--sectionPadding);
+  }
+  #reviews-1454 .cs-container {
+    width: 100%;
+    max-width: 80rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 48px - 64px */
+    gap: clamp(3rem, 6vw, 4rem);
+  }
+  #reviews-1454 .cs-content {
+    /* set text align to left if content needs to be left aligned */
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* centers content horizontally, set to flex-start to left align */
+    align-items: center;
+  }
+  #reviews-1454 .cs-card-group {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* 16px - 20px */
+    gap: clamp(1rem, 2.5vw, 1.25rem);
+  }
+  
+
+  #reviews-1454 .cs-item {
+    list-style: none;
+    width: 100%;
+    max-width: 39.375rem;
+    /* 20px - 40px top & bottom */
+    /* 20px - 40px left & right */
+    padding: clamp(1.25rem, 3.15vw, 2.5rem) clamp(1.25rem, 3.15vw, 2.5rem);
+    background-color: var(--secondaryLight);
+    border-radius: 1rem;
+    /* prevents padding from adding to height and width */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+  }
+
+  #reviews-1454 .cs-gov {
+    list-style: none;
+    width: 100%;
+    max-width: 39.375rem;
+    /* 20px - 40px top & bottom */
+    /* 20px - 40px left & right */
+    padding: clamp(1.25rem, 3.15vw, 2.5rem) clamp(1.25rem, 3.15vw, 2.5rem);
+    border-radius: 1rem;
+    /* prevents padding from adding to height and width */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+  }
+
+
+  #reviews-1454 .cs-quote {
+    /* 48px - 72px */
+    width: clamp(3rem, 4vw, 4.5rem);
+    height: auto;
+    margin-bottom: 2rem;
+  }
+  #reviews-1454 .cs-review {
+    /* 14px - 16px */
+    font-size: clamp(0.875rem, 1.6vw, 1rem);
+    line-height: 1.5em;
+    margin: 0;
+    /* 20px - 40px */
+    margin-bottom: clamp(1.25rem, 3vw, 2.5rem);
+    color: var(--bodyTextColor);
+  }
+  #reviews-1454 .cs-flex-group {
+    /* this margin top auto will push everything up and force the cs-flex-group to the bottom of the container. This is to account for review cards with different heights because of more or less text and makes the cards more responsive to changing text */
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  #reviews-1454 .cs-profile {
+    width: 3.125rem;
+    height: auto;
+    border-radius: 50%;
+    /* clips image corners to make circle */
+    overflow: hidden;
+    position: relative;
+    display: block;
+  }
+  #reviews-1454 .cs-profile img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* makes the image behave like a background image */
+    object-fit: cover;
+  }
+  #reviews-1454 .cs-name {
+    /* 20px - 25px */
+    font-size: clamp(1.25rem, 3vw, 1.5625rem);
+    line-height: 1.2em;
+    font-weight: 700;
+    margin: 0;
+    /* in case one card has more text than the other, this pushes up against the review text so the name and title are always at the bottom. Only works if parent is a flexbox */
+    margin-top: auto;
+    color: var(--headerColor);
+    display: block;
+  }
+  #reviews-1454 .cs-job {
+    /* 14px - 16px */
+    font-size: clamp(0.875rem, 1.6vw, 1rem);
+    line-height: 1.5em;
+    font-weight: 400;
+    margin: 0;
+    color: var(--bodyTextColor);
+    display: block;
+  }
+
+  #reviews-1454 .cs-card-group {
+    display: flex; /* Ensure the container is a flexbox */
+    justify-content: center; /* Center the logos horizontally */
+	flex-direction: row;
+  }
+  #reviews-1454 .cs-gov {
+    margin: 10px; /* Add some margin for spacing between logos */
+  }
+
+  #reviews-1454 .cs-gov img {
+    max-width: 100%; /* Set the maximum width of the images to 100% of their container's width */
+    height: auto; /* Ensure the images maintain their aspect ratio */
+  }
+
+
+/*-- -------------------------- -->
+<---          Footer            -->
+<--- -------------------------- -*/
+#cs-footer-1292 {
+	padding: var(--sectionPadding);
+	padding-bottom: 1.25rem;
+	box-sizing: border-box;
+	overflow: hidden;
+	position: relative;
+	z-index: 10;
+	background-color: var(--secondaryLight);
+	/* Navigation Links */
+}
+#cs-footer-1292 .cs-container {
+	width: 100%;
+	margin: auto;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	column-gap: 1.5rem;
+	row-gap: 2.25rem;
+}
+#cs-footer-1292 .cs-logo-group {
+	/* takes up all the space, lets the other ul's wrap below it */
+	width: 100%;
+	position: relative;
+}
+#cs-footer-1292 .cs-logo {
+	width: 12.3125rem;
+	height: auto;
+	display: block;
+	/* 20px - 24px */
+	margin: 0 0 20 0;
+}
+#cs-footer-1292 .cs-logo-img {
+	width: 100%;
+	height: auto;
+}
+#cs-footer-1292 .cs-logo-img.dark {
+	display: none;
+}
+#cs-footer-1292 .cs-text {
+	font-size: 0.875rem;
+	line-height: 1.5em;
+	/* 20px - 36px */
+	margin: 0 0 clamp(1.25rem, 3vw, 2.25rem);
+	width: 78%;
+	max-width: 15rem;
+	color: var(--secondary);
+}
+#cs-footer-1292 .cs-link {
+	font-size: 0.875rem;
+	line-height: 1.5em;
+	text-decoration: none;
+	margin: 0;
+	color: var(--headerColor);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 0.75rem;
+	transition: color 0.3s;
+}
+#cs-footer-1292 .cs-link:hover {
+	color: var(--primary);
+}
+#cs-footer-1292 .cs-nav {
+	width: 45%;
+	max-width: 11.25rem;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	gap: 1rem;
+}
+#cs-footer-1292 .cs-nav-li {
+	list-style: none;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+#cs-footer-1292 .cs-header {
+	font-size: 1rem;
+	line-height: 1.2em;
+	font-weight: 700;
+	margin-bottom: 0.5rem;
+	color: var(--headerColor);
+	position: relative;
+	display: block;
+}
+#cs-footer-1292 .cs-nav-link {
+	font-size: 0.875rem;
+	text-decoration: none;
+	line-height: 1.5em;
+	width: auto;
+	color: var(--bodyTextColor);
+	position: relative;
+	display: inline-block;
+	transition: color 0.3s;
+}
+#cs-footer-1292 .cs-nav-link:before {
+	/* underline */
+	content: "";
+	width: 0%;
+	height: 0.125rem;
+	background: currentColor;
+	opacity: 1;
+	position: absolute;
+	display: block;
+	bottom: -0.125rem;
+	left: 0;
+	transition: width 0.3s;
+}
+#cs-footer-1292 .cs-nav-link:hover {
+	color: var(--primary);
+}
+#cs-footer-1292 .cs-nav-link:hover:before {
+	width: 100%;
+}
+#cs-footer-1292 .cs-bottom {
+	max-width: 80rem;
+	margin: auto;
+	/* 48px - 100px */
+	margin-top: clamp(3rem, 9vw, 6.25rem);
+	/* 20px - 32px */
+	padding: clamp(1.25rem, 3vw, 2rem) 0 0 0;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	column-gap: 2.25rem;
+	row-gap: 0.75rem;
+}
+#cs-footer-1292 .cs-copyright,
+#cs-footer-1292 .cs-copyright-link {
+	font-size: 0.875rem;
+	line-height: 1.5em;
+	color: var(--bodyTextColor);
+}
+#cs-footer-1292 .cs-copyright {
+	text-align: center;
+	width: 100%;
+}
+#cs-footer-1292 .cs-copyright-link {
+	text-decoration: none;
+	transition: color 0.3s;
+}
+#cs-footer-1292 .cs-copyright-link:hover {
+	color: var(--primary);
+}
+#cs-footer-1292 .cs-floater {
+	width: 31.625rem;
+	height: 31.625rem;
+	margin-left: 34.375rem;
+	border-radius: 50%;
+	border: 2px solid var(--primary);
+	opacity: 0.1;
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 0;
+	z-index: -1;
+}
+#cs-footer-1292 .cs-floater:before {
+	content: "";
+	width: 44.6875rem;
+	height: 44.6875rem;
+	border: 2px solid var(--primary);
+	border-radius: 50%;
+	opacity: 0.6;
+	position: absolute;
+	display: block;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+#cs-footer-1292 .cs-floater:after {
+	content: "";
+	width: 60.1875rem;
+	height: 60.1875rem;
+	border: 2px solid var(--primary);
+	border-radius: 50%;
+	opacity: 0.3;
+	position: absolute;
+	display: block;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
